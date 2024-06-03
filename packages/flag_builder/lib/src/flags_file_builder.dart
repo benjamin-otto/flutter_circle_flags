@@ -7,18 +7,18 @@ import 'package:path/path.dart';
 enum FlagType {
   country(
     assetsSubDir: 'svg/country_flags/',
-    outputFilename: 'country_codes.dart',
-    outputClassName: 'CountryCodes',
+    outputFilename: 'country_code.dart',
+    outputClassName: 'CountryCode',
   ),
   language(
     assetsSubDir: 'svg/language_flags/',
-    outputFilename: 'language_codes.dart',
-    outputClassName: 'LanguageCodes',
+    outputFilename: 'language_code.dart',
+    outputClassName: 'LanguageCode',
   ),
   other(
     assetsSubDir: 'svg/other_flags/',
-    outputFilename: 'other_codes.dart',
-    outputClassName: 'OtherCodes',
+    outputFilename: 'other_code.dart',
+    outputClassName: 'OtherCode',
   );
 
   const FlagType({

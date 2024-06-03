@@ -2,7 +2,7 @@ library circle_flags;
 
 import 'dart:convert';
 
-import 'package:circle_flags/src/codes/other_codes.dart';
+import 'package:circle_flags/src/codes/other_code.dart';
 import 'package:circle_flags/src/flag_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +37,7 @@ class CircleFlag extends StatelessWidget {
     required this.size,
   }) : loader = _createLoader(type, isoCode);
 
+  /// Create a country flag from an [ISO 3166-1 alpha-2 code](https://www.wikiwand.com/en/ISO_3166-1_alpha-2).
   factory CircleFlag(
     String countryCode, {
     Key? key,
@@ -49,6 +50,7 @@ class CircleFlag extends StatelessWidget {
         size: size,
       );
 
+  /// Create a language flag from and [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag).
   factory CircleFlag.language(
     String languageCode, {
     Key? key,
@@ -61,6 +63,9 @@ class CircleFlag extends StatelessWidget {
         size: size,
       );
 
+  /// Create one of the other miscellaneous flags.
+  ///
+  /// See [OtherCodes] for available codes
   factory CircleFlag.other(
     String otherCode, {
     Key? key,
@@ -117,7 +122,7 @@ class _FlagAssetLoader extends SvgAssetLoader {
   }
 
   static final String _notFoundAssetName =
-      computeAssetName(FlagType.other, OtherCodes.QUESTION_MARK);
+      computeAssetName(FlagType.other, OtherCode.QUESTION_MARK);
 
   _FlagAssetLoader(this.type, this.isoCode)
       : super(computeAssetName(type, isoCode));

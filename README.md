@@ -12,52 +12,53 @@ The modification has added the language and other flags.
 
 ## Demo
 
-Country Flag Examples
+**Country Flag Examples**
 
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/br.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/cn.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/gb.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/id.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/in.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ng.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ru.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/us.svg" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/br.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/cn.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/gb.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/id.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/in.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ng.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ru.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/us.svg?raw=true" width="48">
 
-Flag Examples
+**Language Flag Examples**
 
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/ar.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-us.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-au.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/eo.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/es-mx.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/vo.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/mr.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/yi.svg" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/ar.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-us.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-au.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/eo.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/es-mx.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/vo.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/mr.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/yi.svg?raw=true" width="48">
 
-<p>Other Flag Examples</p>
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/checkered.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/klingon.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/lgbt.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/mars.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/nato.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/pirate.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/olympics.svg" width="48">
-<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/united_nations.svg" width="48">
+**Other Flag Examples**
+
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/checkered.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/klingon.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/lgbt.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/mars.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/nato.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/pirate.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/olympics.svg?raw=true" width="48">
+<img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/united_nations.svg?raw=true" width="48">
 
 ## Usage
 
 ```dart
-// Country flags
-CircleFlag(CountryCodes.US);
+// Country flags 
+CircleFlag(CountryCode.US);
 CircleFlag('us');
 
 // Language flags 
-CircleFlag.language(LanguageCodes.EN_US);
+CircleFlag.language(LanguageCode.EN_US);
 CircleFlag('en-us');
 
 // Other flags
-CircleFlag.other(OtherCodes.PIRATE);
-CircleFlag.other(OtherCodes.KLINGON);
+CircleFlag.other(OtherCode.PIRATE);
+CircleFlag.other(OtherCode.KLINGON);
 ```
 
 # Preloading

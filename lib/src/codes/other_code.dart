@@ -1,10 +1,10 @@
-// GENERATED FILE, timestamp: 2024-06-03 10:07:24.372686
+// GENERATED FILE, timestamp: 2024-06-03 10:36:41.286848
 // Regenerate with: dart run build_runner build
 
 import 'package:circle_flags/circle_flags.dart';
 
 /// List of available other codes for [CircleFlag].
-abstract class OtherCodes {
+abstract class OtherCode {
   static const values = <String>[
     CHECKERED,
     EARTH,

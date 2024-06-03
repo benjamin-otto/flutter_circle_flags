@@ -21,9 +21,9 @@ class _MyAppState extends State<MyApp> {
     super.didChangeDependencies();
     // preloading flags so they show instantly (mostly useful for web)
     if (!preloaded) {
-      CircleFlag.preload(FlagType.country, CountryCodes.values);
-      CircleFlag.preload(FlagType.language, LanguageCodes.values);
-      CircleFlag.preload(FlagType.other, OtherCodes.values);
+      CircleFlag.preload(FlagType.country, CountryCode.values);
+      CircleFlag.preload(FlagType.language, LanguageCode.values);
+      CircleFlag.preload(FlagType.other, OtherCode.values);
       preloaded = true;
     }
   }
@@ -60,17 +60,17 @@ class _MyAppState extends State<MyApp> {
       Text('Country flags', style: Theme.of(context).textTheme.titleMedium),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag(CountryCodes.US),
+        leading: CircleFlag(CountryCode.US),
         title: const Text('United States'),
       ),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag(CountryCodes.ES),
+        leading: CircleFlag(CountryCode.ES),
         title: const Text('Spain'),
       ),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag(CountryCodes.SA),
+        leading: CircleFlag(CountryCode.SA),
         title: const Text('Saudi Arabia'),
       ),
       const SizedBox(height: 16),
@@ -82,17 +82,17 @@ class _MyAppState extends State<MyApp> {
       Text('Language flags', style: Theme.of(context).textTheme.titleMedium),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag.language(LanguageCodes.EN_US),
+        leading: CircleFlag.language(LanguageCode.EN_US),
         title: const Text('English US'),
       ),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag.language(LanguageCodes.EO),
+        leading: CircleFlag.language(LanguageCode.EO),
         title: const Text('Esperanto'),
       ),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag.language(LanguageCodes.AR),
+        leading: CircleFlag.language(LanguageCode.AR),
         title: const Text('Arabic'),
       ),
       const SizedBox(height: 16),
@@ -104,12 +104,12 @@ class _MyAppState extends State<MyApp> {
       Text('Other flags', style: Theme.of(context).textTheme.titleMedium),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag.other(OtherCodes.PIRATE),
+        leading: CircleFlag.other(OtherCode.PIRATE),
         title: const Text('Pirate'),
       ),
       const SizedBox(height: 16),
       ListTile(
-        leading: CircleFlag.other(OtherCodes.KLINGON),
+        leading: CircleFlag.other(OtherCode.KLINGON),
         title: const Text('Klingon'),
       ),
       const SizedBox(height: 16),

@@ -1,10 +1,10 @@
-// GENERATED FILE, timestamp: 2024-06-03 10:07:24.369038
+// GENERATED FILE, timestamp: 2024-06-03 10:36:41.282866
 // Regenerate with: dart run build_runner build
 
 import 'package:circle_flags/circle_flags.dart';
 
 /// List of available language codes for [CircleFlag].
-abstract class LanguageCodes {
+abstract class LanguageCode {
   static const values = <String>[
     AA,
     AB,

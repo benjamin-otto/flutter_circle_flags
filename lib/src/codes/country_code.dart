@@ -1,10 +1,10 @@
-// GENERATED FILE, timestamp: 2024-06-03 10:07:24.358986
+// GENERATED FILE, timestamp: 2024-06-03 10:36:41.271934
 // Regenerate with: dart run build_runner build
 
 import 'package:circle_flags/circle_flags.dart';
 
 /// List of available country codes for [CircleFlag].
-abstract class CountryCodes {
+abstract class CountryCode {
   static const values = <String>[
     AC,
     AD,
