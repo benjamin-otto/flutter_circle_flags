@@ -17,16 +17,13 @@ class _MyAppState extends State<MyApp> {
   bool showFlags = false;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // preloading flags so they how instantly (mostly useful for web)
+    // preloading flags so they show instantly (mostly useful for web)
     if (!preloaded) {
-      CircleFlag.preload(Flags.values);
+      CircleFlag.preload(FlagType.country, CountryCodes.values);
+      CircleFlag.preload(FlagType.language, LanguageCodes.values);
+      CircleFlag.preload(FlagType.other, OtherCodes.values);
       preloaded = true;
     }
   }
@@ -42,33 +39,84 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flags'),
+          title: const Text('Example Flags'),
         ),
-        body: showFlags
-            ? ListView.builder(
-                itemCount: Flags.values.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: CircleFlag(
-                      Flags.values[index],
-                      size: 32,
-                    ),
-                    title: Text(Flags.values[index]),
-                    onTap: () {},
-                  ),
-                ),
-              )
-            : Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        showFlags = true;
-                      });
-                    },
-                    child: const Text('show')),
-              ),
+        body: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: ListView(
+            children: [
+              ..._countryFlags(context),
+              ..._languageFlags(context),
+              ..._otherFlags(context),
+            ],
+          ),
+        ),
       ),
     );
+  }
+
+  List<Widget> _countryFlags(BuildContext context) {
+    return [
+      Text('Country flags', style: Theme.of(context).textTheme.titleMedium),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag(CountryCodes.US),
+        title: const Text('United States'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag(CountryCodes.ES),
+        title: const Text('Spain'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag(CountryCodes.SA),
+        title: const Text('Saudi Arabia'),
+      ),
+      const SizedBox(height: 16),
+    ];
+  }
+
+  List<Widget> _languageFlags(BuildContext context) {
+    return [
+      Text('Language flags', style: Theme.of(context).textTheme.titleMedium),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag.language(LanguageCodes.EN_US),
+        title: const Text('English US'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag.language(LanguageCodes.EO),
+        title: const Text('Esperanto'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag.language(LanguageCodes.AR),
+        title: const Text('Arabic'),
+      ),
+      const SizedBox(height: 16),
+    ];
+  }
+
+  List<Widget> _otherFlags(BuildContext context) {
+    return [
+      Text('Other flags', style: Theme.of(context).textTheme.titleMedium),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag.other(OtherCodes.PIRATE),
+        title: const Text('Pirate'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag.other(OtherCodes.KLINGON),
+        title: const Text('Klingon'),
+      ),
+      const SizedBox(height: 16),
+      ListTile(
+        leading: CircleFlag('unrecognized code'),
+        title: const Text('Question mark (shown for unknown codes)'),
+      ),
+    ];
   }
 }

@@ -12,8 +12,18 @@ builders:
   circle_flags|combineFlagFile:
     import: "package:flag_builder/builders.dart"
     builder_factories: ["combineFlagFile"]
-    build_extensions: { r'$package$': ["lib/src/flags.dart"] }
+    build_extensions:
+      {
+        r'$package$':
+          [
+            "lib/src/codes/country_codes.dart",
+            "lib/src/codes/language_codes.dart",
+            "lib/src/codes/other_codes.dart",
+          ],
+      }
     auto_apply: root_package
     build_to: source
     required_inputs:
-      - .dart_tool/build/generated/circle_flags/assets/svg/*.part.txt
+      - .dart_tool/build/generated/circle_flags/assets/svg/country_flags/*.part.txt
+      - .dart_tool/build/generated/circle_flags/assets/svg/language_flags/*.part.txt
+      - .dart_tool/build/generated/circle_flags/assets/svg/other_flags/*.part.txt

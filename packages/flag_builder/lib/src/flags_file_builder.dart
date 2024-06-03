@@ -4,6 +4,34 @@ import 'dart:io';
 import 'package:build/build.dart';
 import 'package:path/path.dart';
 
+enum FlagType {
+  country(
+    assetsSubDir: 'svg/country_flags/',
+    outputFilename: 'country_codes.dart',
+    outputClassName: 'CountryCodes',
+  ),
+  language(
+    assetsSubDir: 'svg/language_flags/',
+    outputFilename: 'language_codes.dart',
+    outputClassName: 'LanguageCodes',
+  ),
+  other(
+    assetsSubDir: 'svg/other_flags/',
+    outputFilename: 'other_codes.dart',
+    outputClassName: 'OtherCodes',
+  );
+
+  const FlagType({
+    required this.assetsSubDir,
+    required this.outputFilename,
+    required this.outputClassName,
+  });
+
+  final String assetsSubDir;
+  final String outputFilename;
+  final String outputClassName;
+}
+
 /// This builder create one file: lib/src/flags.dart, it run only after all calls
 /// to [AssetToCacheBuilder.build] are finished.
 ///
@@ -14,25 +42,23 @@ import 'package:path/path.dart';
 class FlagsFileBuilder implements Builder {
   FlagsFileBuilder();
 
-  static AssetId _allFileOutput(BuildStep buildStep) {
-    return AssetId(
-      buildStep.inputId.package,
-      join('lib', 'src', 'flags.dart'),
-    );
-  }
-
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$lib$': const ['src/flags.dart']
+        r'$lib$': [
+          'src/codes/${FlagType.country.outputFilename}',
+          'src/codes/${FlagType.language.outputFilename}',
+          'src/codes/${FlagType.other.outputFilename}',
+        ],
       };
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
-    final flagFile = File('lib/src/flags.dart');
-    if (flagFile.existsSync()) {
-      flagFile.deleteSync();
-    }
+    generateFile(buildStep, FlagType.country);
+    generateFile(buildStep, FlagType.language);
+    generateFile(buildStep, FlagType.other);
+  }
 
+  Future<void> generateFile(BuildStep buildStep, FlagType type) async {
     // make sure Builders never run in user package even if user
     // import package from git or other sources
     // (this doesn't needed for pub.dev, because of .pubignore)
@@ -40,28 +66,31 @@ class FlagsFileBuilder implements Builder {
       return;
     }
 
-    final output = _allFileOutput(buildStep);
+    final codesFileAssetId = AssetId(
+      buildStep.inputId.package,
+      join('lib', 'src', 'codes', type.outputFilename),
+    );
 
-    print("Writing ${output.path}");
+    print("----------- Writing ${codesFileAssetId.path} -----------");
+
     final fileHeader = '''
 // GENERATED FILE, timestamp: ${DateTime.now()}
 // Regenerate with: dart run build_runner build
 
 import 'package:circle_flags/circle_flags.dart';
 
-/// List of available flags(iso codes) for [CircleFlag].
-abstract class Flags {
+/// List of available ${type.name} codes for [CircleFlag].
+abstract class ${type.outputClassName} {
 ''';
 
     var list = '''
   static const values = <String>[
 ''';
     var newFileContent = '';
-    for (final file
-        in Directory(".dart_tool/build/generated/circle_flags/assets/svg/")
-            .listSync()
-            .toList()
-          ..sort((a, b) => a.path.compareTo(b.path))) {
+    final dir = Directory(
+        '.dart_tool/build/generated/circle_flags/assets/${type.assetsSubDir}');
+    for (final file in dir.listSync().toList()
+      ..sort((a, b) => a.path.compareTo(b.path))) {
       if (file is File) {
         newFileContent += file.readAsStringSync();
         var baseName = file.path.split('/').last;
@@ -72,6 +101,8 @@ abstract class Flags {
 
     list += "  ];\n";
     newFileContent += "}\n";
-    return buildStep.writeAsString(output, fileHeader + list + newFileContent);
+
+    await buildStep.writeAsString(
+        codesFileAssetId, fileHeader + list + newFileContent);
   }
 }

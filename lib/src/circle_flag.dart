@@ -2,12 +2,11 @@ library circle_flags;
 
 import 'dart:convert';
 
-import 'package:circle_flags/src/flags.dart';
+import 'package:circle_flags/src/codes/other_codes.dart';
+import 'package:circle_flags/src/flag_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-export 'package:circle_flags/src/flags.dart';
 
 /// A flag of a country, rounded by default.
 ///
@@ -15,61 +14,77 @@ export 'package:circle_flags/src/flags.dart';
 /// or [Flags] helper.
 class CircleFlag extends StatelessWidget {
   static final _FlagCache cache = _FlagCache();
-  final BytesLoader loader;
-  final double size;
-
-  /// [Clip] option for widget [ClipPath].
-  ///
-  /// This option have no effect if [shape] == null.
-  final Clip clipBehavior;
-
-  /// Clip the flag by [ShapeBorder], default: [CircleBorder].
-  ///
-  /// If null, return square flag.
-  final ShapeBorder? shape;
-
-  CircleFlag(
-    String isoCode, {
-    super.key,
-    this.size = 48,
-    this.shape = const CircleBorder(eccentricity: 0),
-    this.clipBehavior = Clip.antiAlias,
-  }) : loader = _createLoader(isoCode);
 
   /// check if a flag has been preloaded if so, returns its byteloader
-  static BytesLoader _createLoader(String isoCode) {
-    final cacheEntry = cache._loaders[isoCode];
+  static BytesLoader _createLoader(FlagType type, String isoCode) {
+    final cacheKey = _FlagCache.createCacheKey(type, isoCode);
+    final cacheEntry = cache._loaders[cacheKey];
     if (cacheEntry != null) {
       return cacheEntry;
     }
-    return _FlagAssetLoader(isoCode);
+    return _FlagAssetLoader(type, isoCode);
   }
 
   /// preload a list of flags in memory
-  static preload(Iterable<String> isoCodes) {
-    return cache.preload(isoCodes);
+  static preload(FlagType type, Iterable<String> isoCodes) {
+    return cache.preload(type, isoCodes);
   }
+
+  CircleFlag._(
+    String isoCode, {
+    super.key,
+    required this.type,
+    required this.size,
+  }) : loader = _createLoader(type, isoCode);
+
+  factory CircleFlag(
+    String countryCode, {
+    Key? key,
+    double size = 48,
+  }) =>
+      CircleFlag._(
+        countryCode,
+        key: key,
+        type: FlagType.country,
+        size: size,
+      );
+
+  factory CircleFlag.language(
+    String languageCode, {
+    Key? key,
+    double size = 48,
+  }) =>
+      CircleFlag._(
+        languageCode,
+        key: key,
+        type: FlagType.language,
+        size: size,
+      );
+
+  factory CircleFlag.other(
+    String otherCode, {
+    Key? key,
+    double size = 48,
+  }) =>
+      CircleFlag._(
+        otherCode,
+        key: key,
+        type: FlagType.other,
+        size: size,
+      );
+
+  final FlagType type;
+  final double size;
+  final BytesLoader loader;
 
   @override
   Widget build(BuildContext context) {
-    final svg = SvgPicture(
-      loader,
-      width: size,
-      height: size,
-    );
-
-    final clipped = shape == null
-        ? svg
-        : ClipPath(
-            clipper: ShapeBorderClipper(
-              shape: shape!,
-              textDirection: Directionality.maybeOf(context),
-            ),
-            clipBehavior: clipBehavior,
-            child: svg,
-          );
     return ExcludeSemantics(
-      child: clipped,
+      child: SvgPicture(
+        loader,
+        width: size,
+        height: size,
+      ),
     );
   }
 }
@@ -77,12 +92,9 @@ class CircleFlag extends StatelessWidget {
 /// create an SvgAssetLoader that points to circle flag svg file
 /// it will resolve to the "?" flag if the normal asset is not found
 class _FlagAssetLoader extends SvgAssetLoader {
-  final String isoCode;
-
-  _FlagAssetLoader(this.isoCode) : super(computeAssetName(isoCode));
-
-  static String computeAssetName(String isoCode) {
-    return 'packages/circle_flags/assets/svg/${isoCode.toLowerCase()}.svg';
+  static String computeAssetName(FlagType type, String isoCode) {
+    final assetsDir = 'packages/circle_flags/assets';
+    return '$assetsDir/${type.assetsSubDir}/${isoCode.toLowerCase()}.svg';
   }
 
   static Future<ByteData> loadAsset(String assetName,
@@ -90,9 +102,7 @@ class _FlagAssetLoader extends SvgAssetLoader {
     final bundle = _FlagAssetLoader._resolveBundle(assetBundle, context);
     return bundle
         .load(assetName)
-        // if any error loading a flag try to show the "?" flag
-        .catchError(
-            (e) => rootBundle.load(_FlagAssetLoader.computeAssetName('xx')));
+        .catchError((e) => rootBundle.load(_notFoundAssetName));
   }
 
   static AssetBundle _resolveBundle(
@@ -106,13 +116,21 @@ class _FlagAssetLoader extends SvgAssetLoader {
     return rootBundle;
   }
 
+  static final String _notFoundAssetName =
+      computeAssetName(FlagType.other, OtherCodes.QUESTION_MARK);
+
+  _FlagAssetLoader(this.type, this.isoCode)
+      : super(computeAssetName(type, isoCode));
+
+  final FlagType type;
+  final String isoCode;
+
   @override
   Future<ByteData?> prepareMessage(BuildContext? context) {
     final bundle = _resolveBundle(assetBundle, context);
     return bundle
-        .load(computeAssetName(isoCode))
-        // load "?" on error
-        .catchError((e) => bundle.load(computeAssetName('xx')));
+        .load(computeAssetName(type, isoCode))
+        .catchError((e) => bundle.load(_notFoundAssetName));
   }
 
   @override
@@ -122,7 +140,10 @@ class _FlagAssetLoader extends SvgAssetLoader {
   @override
   SvgCacheKey cacheKey(BuildContext? context) {
     return SvgCacheKey(
-        keyData: isoCode, theme: theme, colorMapper: colorMapper);
+      keyData: _FlagCache.createCacheKey(type, isoCode),
+      theme: theme,
+      colorMapper: colorMapper,
+    );
   }
 }
 
@@ -130,26 +151,34 @@ class _FlagAssetLoader extends SvgAssetLoader {
 /// svg bytes.
 /// Currently only caches preloaded items
 class _FlagCache {
+  static String createCacheKey(FlagType type, String isoCode) =>
+      '${type.name}_$isoCode';
+
   final _loaders = <String, SvgBytesLoader>{};
 
   /// preloads flag data into svg cache
   Future<void> preload(
+    FlagType type,
     Iterable<String> isoCodes, [
     BuildContext? context,
     AssetBundle? assetBundle,
   ]) async {
     final tasks = <Future>[];
     for (final isoCode in isoCodes) {
-      final task = _createLoader(isoCode, context, assetBundle)
-          .then((loader) => _addLoaderToCache(isoCode, loader));
+      final task = _createLoader(type, isoCode, context, assetBundle)
+          .then((loader) => _addLoaderToCache(type, isoCode, loader));
       tasks.add(task);
     }
     await Future.wait(tasks);
   }
 
   Future<SvgBytesLoader> _createLoader(
-      String isoCode, BuildContext? context, AssetBundle? assetBundle) async {
-    final assetName = _FlagAssetLoader.computeAssetName(isoCode);
+    FlagType type,
+    String isoCode,
+    BuildContext? context,
+    AssetBundle? assetBundle,
+  ) async {
+    final assetName = _FlagAssetLoader.computeAssetName(type, isoCode);
     final byteData =
         await _FlagAssetLoader.loadAsset(assetName, context, assetBundle);
     final loader = SvgBytesLoader(Uint8List.sublistView(byteData));
@@ -160,9 +189,11 @@ class _FlagCache {
   }
 
   void _addLoaderToCache(
+    FlagType type,
     String isoCode,
     SvgBytesLoader loader,
   ) {
-    _loaders[isoCode] = loader;
+    final cacheKey = createCacheKey(type, isoCode);
+    _loaders[cacheKey] = loader;
   }
 }
