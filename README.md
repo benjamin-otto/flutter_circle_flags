@@ -14,6 +14,7 @@ The modification has added the language and other flags.
 
 **Country Flag Examples**
 
+<div>
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/br.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/cn.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/gb.svg?raw=true" width="48">
@@ -22,9 +23,11 @@ The modification has added the language and other flags.
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ng.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/ru.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/country_flags/us.svg?raw=true" width="48">
+</div>
 
 **Language Flag Examples**
 
+<div>
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/ar.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-us.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/en-au.svg?raw=true" width="48">
@@ -33,9 +36,11 @@ The modification has added the language and other flags.
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/vo.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/mr.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/language_flags/yi.svg?raw=true" width="48">
+</div>
 
 **Other Flag Examples**
 
+<div>
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/checkered.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/klingon.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/lgbt.svg?raw=true" width="48">
@@ -44,19 +49,29 @@ The modification has added the language and other flags.
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/pirate.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/olympics.svg?raw=true" width="48">
 <img src="https://github.com/benjamin-otto/flutter_circle_flags/blob/main/assets/svg/other_flags/united_nations.svg?raw=true" width="48">
+</div>
 
 ## Usage
 
+**Country flags**
+[ISO 3166-1 alpha-2 code](https://www.wikiwand.com/en/ISO_3166-1_alpha-2)
+
 ```dart
-// Country flags 
 CircleFlag(CountryCode.US);
 CircleFlag('us');
+```
 
-// Language flags 
+**Language flags**
+[IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+
+```dart
 CircleFlag.language(LanguageCode.EN_US);
 CircleFlag('en-us');
+```
 
-// Other flags
+**Other flags**
+
+```dart
 CircleFlag.other(OtherCode.PIRATE);
 CircleFlag.other(OtherCode.KLINGON);
 ```
