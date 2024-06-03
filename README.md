@@ -95,6 +95,6 @@ dart run build_runner build
 
 The builder will iterate through the .svg files (and symbolic links) creating:
 
-1. lib/src/codes/country_codes.dart
-2. lib/src/codes/language_codes.dart
-3. lib/src/codes/other_codes.dart
+1. lib/src/codes/country_code.dart
+2. lib/src/codes/language_code.dart
+3. lib/src/codes/other_code.dart
