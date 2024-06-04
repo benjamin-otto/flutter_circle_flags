@@ -98,3 +98,7 @@ The builder will iterate through the .svg files (and symbolic links) creating:
 1. lib/src/codes/country_code.dart
 2. lib/src/codes/language_code.dart
 3. lib/src/codes/other_code.dart
+
+⚠️ `Note:` Sometimes the files fail to be overwritten. To be absolutely sure that
+they are generated properly it may be best to delete them first so they are
+recreated from scratch.
