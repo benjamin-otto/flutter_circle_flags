@@ -1,4 +1,4 @@
-// GENERATED FILE, timestamp: 2024-06-03 10:36:41.286848
+// GENERATED FILE, timestamp: 2024-06-04 09:45:58.674625
 // Regenerate with: dart run build_runner build
 
 import 'package:circle_flags/circle_flags.dart';
@@ -8,6 +8,7 @@ abstract class OtherCode {
   static const values = <String>[
     CHECKERED,
     EARTH,
+    GLOBE,
     KLINGON,
     LGBT,
     LGBT_PROGRESS,
@@ -21,6 +22,7 @@ abstract class OtherCode {
   ];
   static const String CHECKERED = 'checkered';
   static const String EARTH = 'earth';
+  static const String GLOBE = 'globe';
   static const String KLINGON = 'klingon';
   static const String LGBT = 'lgbt';
   static const String LGBT_PROGRESS = 'lgbt_progress';
